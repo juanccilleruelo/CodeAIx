@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CodeAIx.MainWindow"
+        Title="CodeAIx"
+        Width="600"
+        Height="400">
+   <DockPanel>
+      <Menu DockPanel.Dock="Top">
+         <MenuItem Header="_Archivo">
+            <MenuItem Header="Hola Mundo"
+                      Click="OnHolaMundoClick" />
+            <MenuItem Header="Salir"
+                      Click="OnSalirClick" />
+         </MenuItem>
+      </Menu>
+      <Border Margin="12">
+         <TextBlock x:Name="GreetingText"
+                    Text="Bienvenido a CodeAIx"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="20" />
+      </Border>
+   </DockPanel>
+</Window>
