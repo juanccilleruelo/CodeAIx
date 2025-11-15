@@ -34,6 +34,40 @@
          <Setter Property="Background"
                  Value="#3C3F44" />
       </Style>
+      <Style Selector="Button.chat-action">
+         <Setter Property="Padding"
+                 Value="16,10" />
+         <Setter Property="Margin"
+                 Value="0" />
+         <Setter Property="FontWeight"
+                 Value="SemiBold" />
+         <Setter Property="BorderThickness"
+                 Value="0" />
+         <Setter Property="CornerRadius"
+                 Value="6" />
+         <Setter Property="Foreground"
+                 Value="White" />
+         <Setter Property="HorizontalAlignment"
+                 Value="Center" />
+      </Style>
+      <Style Selector="Button.chat-action.secondary">
+         <Setter Property="Background"
+                 Value="#2D323C" />
+         <Setter Property="Foreground"
+                 Value="#E2E2E2" />
+      </Style>
+      <Style Selector="Button.chat-action.secondary:pointerover">
+         <Setter Property="Background"
+                 Value="#3A414E" />
+      </Style>
+      <Style Selector="Button.chat-action.primary">
+         <Setter Property="Background"
+                 Value="#007ACC" />
+      </Style>
+      <Style Selector="Button.chat-action.primary:pointerover">
+         <Setter Property="Background"
+                 Value="#0D8DE1" />
+      </Style>
    </Window.Styles>
    <DockPanel>
       <Menu DockPanel.Dock="Top">
@@ -84,43 +118,63 @@
          </Border>
          <Border Grid.Column="1"
                  Background="#1B1E24">
-            <ScrollViewer>
-               <StackPanel Margin="20"
-                           Spacing="12">
+            <Grid RowDefinitions="Auto,* ,Auto">
+               <StackPanel Grid.Row="0"
+                           Margin="20"
+                           Spacing="4">
                   <TextBlock x:Name="GreetingText"
                              Text="Bienvenido a CodeAIx"
                              FontSize="26"
                              FontWeight="SemiBold"
                              Foreground="#F5F5F5" />
-                  <TextBlock Text="Comienza a trabajar en tu espacio principal. Este panel con scroll te permite organizar el contenido central de CodeAIx tal como lo haria el editor de VS Code."
+                  <TextBlock Text="Prepara tus instrucciones, adjunta material y envialo como si conversaras con Codex."
                              Foreground="#DADADA"
                              TextWrapping="Wrap" />
-                  <Border Background="#21242B"
-                          CornerRadius="8"
-                          Padding="16">
-                     <StackPanel Spacing="8">
-                        <TextBlock Text="Tareas recientes"
-                                   FontWeight="SemiBold"
-                                   Foreground="#F5F5F5" />
-                        <TextBlock Text="Este espacio esta listo para listar tareas, conversaciones o archivos abiertos."
-                                   TextWrapping="Wrap"
-                                   Foreground="#C8C8C8" />
-                     </StackPanel>
-                  </Border>
-                  <Border Background="#21242B"
-                          CornerRadius="8"
-                          Padding="16">
-                     <StackPanel Spacing="8">
-                        <TextBlock Text="Notas de trabajo"
-                                   FontWeight="SemiBold"
-                                   Foreground="#F5F5F5" />
-                        <TextBlock Text="Puedes utilizar este lienzo para escribir las instrucciones o resumenes de tus iteraciones."
-                                   TextWrapping="Wrap"
-                                   Foreground="#C8C8C8" />
-                     </StackPanel>
-                  </Border>
                </StackPanel>
-            </ScrollViewer>
+               <Border Grid.Row="1"
+                       Margin="20,0,20,12"
+                       Background="#21242B"
+                       CornerRadius="10">
+                  <ScrollViewer>
+                     <StackPanel x:Name="ConversationList"
+                                 Margin="20"
+                                 Spacing="12" />
+                  </ScrollViewer>
+               </Border>
+               <Border Grid.Row="2"
+                       Margin="20"
+                       Background="#1E2127"
+                       CornerRadius="12"
+                       Padding="16">
+                  <StackPanel Spacing="12">
+                     <TextBlock Text="Editor de instrucciones"
+                                FontWeight="SemiBold"
+                                Foreground="#F5F5F5" />
+                     <Border Background="#121417"
+                             CornerRadius="8"
+                             Padding="12">
+                        <TextBox x:Name="InstructionEditor"
+                                 Watermark="Escribe aqui como quieres que Codex trabaje..."
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 MinHeight="140"
+                                 BorderThickness="0"
+                                 Background="Transparent"
+                                 Foreground="#F0F0F0" />
+                     </Border>
+                     <StackPanel Orientation="Horizontal"
+                                 Spacing="12"
+                                 HorizontalAlignment="Right">
+                        <Button Classes="chat-action secondary"
+                                Content="Añadir"
+                                Click="OnAddDraftClick" />
+                        <Button Classes="chat-action primary"
+                                Content="Enviar"
+                                Click="OnSendClick" />
+                     </StackPanel>
+                  </StackPanel>
+               </Border>
+            </Grid>
          </Border>
       </Grid>
    </DockPanel>
