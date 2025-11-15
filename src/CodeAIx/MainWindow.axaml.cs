@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -10,10 +11,21 @@ namespace CodeAIx;
 public partial class MainWindow : Window {
    public MainWindow() {
       InitializeComponent();
+      WindowStartupLocation = WindowStartupLocation.Manual;
+      Opened += OnOpened;
    }
 
    private void InitializeComponent() {
       AvaloniaXamlLoader.Load(this);
+   }
+
+   private void OnOpened(object? sender, EventArgs e) {
+      if (Screens.Primary is { } primaryScreen) {
+         var workingArea = primaryScreen.WorkingArea;
+         Width = workingArea.Width / 3.0;
+         Height = workingArea.Height;
+         Position = new PixelPoint(workingArea.X, workingArea.Y);
+      }
    }
 
    private async void OnHolaMundoClick(object? sender, RoutedEventArgs e) {
