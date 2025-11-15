@@ -5,6 +5,36 @@
         Title="CodeAIx"
         Width="600"
         Height="400">
+   <Window.Styles>
+      <Style Selector="Button.sidebar-icon">
+         <Setter Property="Width"
+                 Value="48" />
+         <Setter Property="Height"
+                 Value="48" />
+         <Setter Property="Background"
+                 Value="Transparent" />
+         <Setter Property="BorderBrush"
+                 Value="#2E2E2E" />
+         <Setter Property="BorderThickness"
+                 Value="1" />
+         <Setter Property="CornerRadius"
+                 Value="8" />
+         <Setter Property="HorizontalAlignment"
+                 Value="Center" />
+         <Setter Property="Cursor"
+                 Value="Hand" />
+      </Style>
+      <Style Selector="Button.sidebar-icon:pointerover">
+         <Setter Property="Background"
+                 Value="#2F3237" />
+         <Setter Property="BorderBrush"
+                 Value="#4B4B4B" />
+      </Style>
+      <Style Selector="Button.sidebar-icon:pressed">
+         <Setter Property="Background"
+                 Value="#3C3F44" />
+      </Style>
+   </Window.Styles>
    <DockPanel>
       <Menu DockPanel.Dock="Top">
          <MenuItem Header="_Archivo">
@@ -14,12 +44,84 @@
                       Click="OnSalirClick" />
          </MenuItem>
       </Menu>
-      <Border Margin="12">
-         <TextBlock x:Name="GreetingText"
-                    Text="Bienvenido a CodeAIx"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="20" />
-      </Border>
+      <Grid>
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="68" />
+            <ColumnDefinition Width="*" />
+         </Grid.ColumnDefinitions>
+         <Border Grid.Column="0"
+                 Background="#1E1E1E"
+                 BorderBrush="#2A2A2A"
+                 BorderThickness="0,0,1,0">
+            <StackPanel Margin="0,24,0,24"
+                        Spacing="18"
+                        HorizontalAlignment="Center">
+               <Button Classes="sidebar-icon"
+                       ToolTip.Tip="Explorador de proyectos">
+                  <Path Width="24"
+                        Height="24"
+                        Data="M3 5 H7 L9 7 H13 V13 H3 Z"
+                        Stretch="Uniform"
+                        Fill="#F5F5F5" />
+               </Button>
+               <Button Classes="sidebar-icon"
+                       ToolTip.Tip="Pizarra de ideas">
+                  <Path Width="24"
+                        Height="24"
+                        Data="M3 4 H13 V10 H10 L7 13 V10 H3 Z"
+                        Stretch="Uniform"
+                        Fill="#F5F5F5" />
+               </Button>
+               <Button Classes="sidebar-icon"
+                       ToolTip.Tip="Panel de insights">
+                  <Path Width="24"
+                        Height="24"
+                        Data="M8 3 L10 7 H14 L11 9.5 L12 13 L8 11 L4 13 L5 9.5 L2 7 H6 Z"
+                        Stretch="Uniform"
+                        Fill="#F5F5F5" />
+               </Button>
+            </StackPanel>
+         </Border>
+         <Border Grid.Column="1"
+                 Background="#1B1E24">
+            <ScrollViewer>
+               <StackPanel Margin="20"
+                           Spacing="12">
+                  <TextBlock x:Name="GreetingText"
+                             Text="Bienvenido a CodeAIx"
+                             FontSize="26"
+                             FontWeight="SemiBold"
+                             Foreground="#F5F5F5" />
+                  <TextBlock Text="Comienza a trabajar en tu espacio principal. Este panel con scroll te permite organizar el contenido central de CodeAIx tal como lo haria el editor de VS Code."
+                             Foreground="#DADADA"
+                             TextWrapping="Wrap" />
+                  <Border Background="#21242B"
+                          CornerRadius="8"
+                          Padding="16">
+                     <StackPanel Spacing="8">
+                        <TextBlock Text="Tareas recientes"
+                                   FontWeight="SemiBold"
+                                   Foreground="#F5F5F5" />
+                        <TextBlock Text="Este espacio esta listo para listar tareas, conversaciones o archivos abiertos."
+                                   TextWrapping="Wrap"
+                                   Foreground="#C8C8C8" />
+                     </StackPanel>
+                  </Border>
+                  <Border Background="#21242B"
+                          CornerRadius="8"
+                          Padding="16">
+                     <StackPanel Spacing="8">
+                        <TextBlock Text="Notas de trabajo"
+                                   FontWeight="SemiBold"
+                                   Foreground="#F5F5F5" />
+                        <TextBlock Text="Puedes utilizar este lienzo para escribir las instrucciones o resumenes de tus iteraciones."
+                                   TextWrapping="Wrap"
+                                   Foreground="#C8C8C8" />
+                     </StackPanel>
+                  </Border>
+               </StackPanel>
+            </ScrollViewer>
+         </Border>
+      </Grid>
    </DockPanel>
 </Window>
